@@ -105,7 +105,7 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
 		       // 输出安全值
 			   if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
 				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  
-			   // 输出正常值
+			   // 输出正常值 
 			   else
 			   {
 				   sTemp = (BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0]) / 2; // 计算操作范围

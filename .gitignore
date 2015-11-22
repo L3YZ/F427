@@ -13,3 +13,11 @@
 *.hex
 *.hex
 *.axf
+*._ip
+*.crf
+*.txt
+XLong/OS/KeilMDKPrj/Lst/pwm.txt
+*.lst
+XLong/OS/KeilMDKPrj/Lst/pwm.i
+*.htm
+XLong/OS/KeilMDKPrj/Obj/XLong_FLASH.dep

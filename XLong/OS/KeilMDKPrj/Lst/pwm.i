@@ -27843,8 +27843,10 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
 		{	
            if(BSP_XLongPWM_MultiPara[4] == 0u) 	
 		   {
-		       if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
+		       
+			   if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
 				   ((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400))->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  
+			   
 			   else
 			   {
 				   sTemp = (BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0]) / 2; 

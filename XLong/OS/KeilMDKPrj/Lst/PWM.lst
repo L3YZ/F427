@@ -39451,9 +39451,11 @@ N		{
 N           if(BSP_XLongPWM_MultiPara[4] == BSP_PWM_BiDir) 	// 双极性
 X           if(BSP_XLongPWM_MultiPara[4] == 0u) 	
 N		   {
-N		       if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
-N				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
+N		       // 输出安全值
+N			   if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
+N				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  
 X				   ((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400))->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  
+N			   // 输出正常值 
 N			   else
 N			   {
 N				   sTemp = (BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0]) / 2; // 计算操作范围
@@ -39461,7 +39463,7 @@ N				   fTemp = (CPU_FP32)sTemp;
 N				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 N				   
 N				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准
-N				   // 限幅
+N				   // 限幅，因为中间值可能设置的不是对称中心
 N                        if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
 N                   else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
 N                   else    fTemp = fTemp;			   
@@ -39505,7 +39507,7 @@ N				   fTemp = (CPU_FP32)sTemp;
 N				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 N				   
 N				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准 
-N				   // 限幅
+N				   // 限幅，因为中间值可能设置的不是对称中心
 N                        if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
 N                   else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
 N                   else    fTemp = fTemp;				   
@@ -39876,8 +39878,8 @@ N
 N	// FET_2A输出测试值
 N	TIM_SetCompare1(TIM11, 12000);	   //FET_2A	
 X	TIM_SetCompare1(((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x4800)), 12000);	   
-W "..\..\BSP\XLong\src\PWM.c" 241 13 variable "i" was declared but never referenced
-W "..\..\BSP\XLong\src\PWM.c" 241 15 variable "j" was declared but never referenced
+W "..\..\BSP\XLong\src\PWM.c" 243 13 variable "i" was declared but never referenced
+W "..\..\BSP\XLong\src\PWM.c" 243 15 variable "j" was declared but never referenced
 N} 
 N
 N

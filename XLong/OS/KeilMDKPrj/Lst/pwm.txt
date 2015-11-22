@@ -5,533 +5,533 @@
                           AREA ||i.BSP_XLong_PWMInit||, CODE, READONLY, ALIGN=2
 
                   BSP_XLong_PWMInit PROC
-;;;238    
-;;;239    void   BSP_XLong_PWMInit(void)
+;;;240    
+;;;241    void   BSP_XLong_PWMInit(void)
 000000  b500              PUSH     {lr}
-;;;240    {
+;;;242    {
 000002  b089              SUB      sp,sp,#0x24
-;;;241    	CPU_INT16U i,j;
-;;;242    	
-;;;243    	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-;;;244    	TIM_OCInitTypeDef        TIM_OCInitStructure;
-;;;245    	  
-;;;246    	// Group TIM3   默认50Hz
-;;;247    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[0]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;243    	CPU_INT16U i,j;
+;;;244    	
+;;;245    	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+;;;246    	TIM_OCInitTypeDef        TIM_OCInitStructure;
+;;;247    	  
+;;;248    	// Group TIM3   默认50Hz
+;;;249    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[0]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
 000004  48f0              LDR      r0,|L1.968|
 000006  8800              LDRH     r0,[r0,#0]  ; BSP_XLongPWM_GroupPara
 000008  f8ad0018          STRH     r0,[sp,#0x18]
-;;;248    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;250    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 00000c  2000              MOVS     r0,#0
 00000e  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;249    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[1]; //0-65535                                    
+;;;251    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[1]; //0-65535                                    
 000012  48ed              LDR      r0,|L1.968|
 000014  8840              LDRH     r0,[r0,#2]  ; BSP_XLongPWM_GroupPara
 000016  9007              STR      r0,[sp,#0x1c]
-;;;250    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                  
+;;;252    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                  
 000018  2000              MOVS     r0,#0
 00001a  f8ad0020          STRH     r0,[sp,#0x20]
-;;;251    	TIM_TimeBaseInit(TIM3,&TIM_TimeBaseStructure);	
+;;;253    	TIM_TimeBaseInit(TIM3,&TIM_TimeBaseStructure);	
 00001e  a906              ADD      r1,sp,#0x18
 000020  48ea              LDR      r0,|L1.972|
 000022  f7fffffe          BL       TIM_TimeBaseInit
-;;;252    	
-;;;253    	// Group TIM9   默认50Hz
-;;;254    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[3]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;254    	
+;;;255    	// Group TIM9   默认50Hz
+;;;256    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[3]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
 000026  48e8              LDR      r0,|L1.968|
 000028  88c0              LDRH     r0,[r0,#6]  ; BSP_XLongPWM_GroupPara
 00002a  f8ad0018          STRH     r0,[sp,#0x18]
-;;;255    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;257    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 00002e  2000              MOVS     r0,#0
 000030  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;256    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[4]; //0-65535                                    
+;;;258    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[4]; //0-65535                                    
 000034  48e4              LDR      r0,|L1.968|
 000036  8900              LDRH     r0,[r0,#8]  ; BSP_XLongPWM_GroupPara
 000038  9007              STR      r0,[sp,#0x1c]
-;;;257    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                 
+;;;259    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                 
 00003a  2000              MOVS     r0,#0
 00003c  f8ad0020          STRH     r0,[sp,#0x20]
-;;;258        TIM_TimeBaseInit(TIM9,&TIM_TimeBaseStructure);
+;;;260        TIM_TimeBaseInit(TIM9,&TIM_TimeBaseStructure);
 000040  a906              ADD      r1,sp,#0x18
 000042  48e3              LDR      r0,|L1.976|
 000044  f7fffffe          BL       TIM_TimeBaseInit
-;;;259    	
-;;;260    	// Group TIM12  默认50Hz
-;;;261    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[6]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;261    	
+;;;262    	// Group TIM12  默认50Hz
+;;;263    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[6]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
 000048  48df              LDR      r0,|L1.968|
 00004a  8980              LDRH     r0,[r0,#0xc]  ; BSP_XLongPWM_GroupPara
 00004c  f8ad0018          STRH     r0,[sp,#0x18]
-;;;262    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;264    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 000050  2000              MOVS     r0,#0
 000052  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;263    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[7]; //0-65535                                    
+;;;265    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[7]; //0-65535                                    
 000056  48dc              LDR      r0,|L1.968|
 000058  89c0              LDRH     r0,[r0,#0xe]  ; BSP_XLongPWM_GroupPara
 00005a  9007              STR      r0,[sp,#0x1c]
-;;;264    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                 
+;;;266    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                 
 00005c  2000              MOVS     r0,#0
 00005e  f8ad0020          STRH     r0,[sp,#0x20]
-;;;265        TIM_TimeBaseInit(TIM12,&TIM_TimeBaseStructure);	
+;;;267        TIM_TimeBaseInit(TIM12,&TIM_TimeBaseStructure);	
 000062  a906              ADD      r1,sp,#0x18
 000064  48db              LDR      r0,|L1.980|
 000066  f7fffffe          BL       TIM_TimeBaseInit
-;;;266    	
-;;;267    	// Group TIM1	默认400Hz
-;;;268    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[9]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;268    	
+;;;269    	// Group TIM1	默认400Hz
+;;;270    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[9]; //Timer时钟的预分频值，分频后的值为计数时钟频率 
 00006a  48d7              LDR      r0,|L1.968|
 00006c  8a40              LDRH     r0,[r0,#0x12]  ; BSP_XLongPWM_GroupPara
 00006e  f8ad0018          STRH     r0,[sp,#0x18]
-;;;269    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;271    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 000072  2000              MOVS     r0,#0
 000074  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;270    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[10];//0-65535                                    
+;;;272    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[10];//0-65535                                    
 000078  48d3              LDR      r0,|L1.968|
 00007a  8a80              LDRH     r0,[r0,#0x14]  ; BSP_XLongPWM_GroupPara
 00007c  9007              STR      r0,[sp,#0x1c]
-;;;271    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                  
+;;;273    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                  
 00007e  2000              MOVS     r0,#0
 000080  f8ad0020          STRH     r0,[sp,#0x20]
-;;;272    	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0x0;
+;;;274    	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0x0;
 000084  f88d0022          STRB     r0,[sp,#0x22]
-;;;273    	TIM_TimeBaseInit(TIM1,&TIM_TimeBaseStructure);	
+;;;275    	TIM_TimeBaseInit(TIM1,&TIM_TimeBaseStructure);	
 000088  a906              ADD      r1,sp,#0x18
 00008a  48d3              LDR      r0,|L1.984|
 00008c  f7fffffe          BL       TIM_TimeBaseInit
-;;;274    	
-;;;275    	// Group TIM4	默认400Hz
-;;;276    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[12];//Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;276    	
+;;;277    	// Group TIM4	默认400Hz
+;;;278    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[12];//Timer时钟的预分频值，分频后的值为计数时钟频率 
 000090  48cd              LDR      r0,|L1.968|
 000092  8b00              LDRH     r0,[r0,#0x18]  ; BSP_XLongPWM_GroupPara
 000094  f8ad0018          STRH     r0,[sp,#0x18]
-;;;277    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;279    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 000098  2000              MOVS     r0,#0
 00009a  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;278    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[13];//0-65535                                    
+;;;280    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[13];//0-65535                                    
 00009e  48ca              LDR      r0,|L1.968|
 0000a0  8b40              LDRH     r0,[r0,#0x1a]  ; BSP_XLongPWM_GroupPara
 0000a2  9007              STR      r0,[sp,#0x1c]
-;;;279    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                
+;;;281    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                
 0000a4  2000              MOVS     r0,#0
 0000a6  f8ad0020          STRH     r0,[sp,#0x20]
-;;;280    	TIM_TimeBaseInit(TIM4,&TIM_TimeBaseStructure);
+;;;282    	TIM_TimeBaseInit(TIM4,&TIM_TimeBaseStructure);
 0000aa  a906              ADD      r1,sp,#0x18
 0000ac  48cb              LDR      r0,|L1.988|
 0000ae  f7fffffe          BL       TIM_TimeBaseInit
-;;;281    	
-;;;282    	// Group TIM13 LED       默认20Hz	
-;;;283    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[15];//Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;283    	
+;;;284    	// Group TIM13 LED       默认20Hz	
+;;;285    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[15];//Timer时钟的预分频值，分频后的值为计数时钟频率 
 0000b2  48c5              LDR      r0,|L1.968|
 0000b4  8bc0              LDRH     r0,[r0,#0x1e]  ; BSP_XLongPWM_GroupPara
 0000b6  f8ad0018          STRH     r0,[sp,#0x18]
-;;;284    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;286    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 0000ba  2000              MOVS     r0,#0
 0000bc  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;285    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[16];//0-65535                                    
+;;;287    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[16];//0-65535                                    
 0000c0  48c1              LDR      r0,|L1.968|
 0000c2  8c00              LDRH     r0,[r0,#0x20]  ; BSP_XLongPWM_GroupPara
 0000c4  9007              STR      r0,[sp,#0x1c]
-;;;286    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                             
+;;;288    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                             
 0000c6  2000              MOVS     r0,#0
 0000c8  f8ad0020          STRH     r0,[sp,#0x20]
-;;;287    	TIM_TimeBaseInit(TIM13,&TIM_TimeBaseStructure);		
+;;;289    	TIM_TimeBaseInit(TIM13,&TIM_TimeBaseStructure);		
 0000cc  a906              ADD      r1,sp,#0x18
 0000ce  48c4              LDR      r0,|L1.992|
 0000d0  f7fffffe          BL       TIM_TimeBaseInit
-;;;288    
-;;;289    	// Group TIM14 蜂鸣器    默认20Hz	
-;;;290    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[18];//Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;290    
+;;;291    	// Group TIM14 蜂鸣器    默认20Hz	
+;;;292    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[18];//Timer时钟的预分频值，分频后的值为计数时钟频率 
 0000d4  48bc              LDR      r0,|L1.968|
 0000d6  8c80              LDRH     r0,[r0,#0x24]  ; BSP_XLongPWM_GroupPara
 0000d8  f8ad0018          STRH     r0,[sp,#0x18]
-;;;291    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;293    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 0000dc  2000              MOVS     r0,#0
 0000de  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;292    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[19];//0-65535                                    
+;;;294    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[19];//0-65535                                    
 0000e2  48b9              LDR      r0,|L1.968|
 0000e4  8cc0              LDRH     r0,[r0,#0x26]  ; BSP_XLongPWM_GroupPara
 0000e6  9007              STR      r0,[sp,#0x1c]
-;;;293    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                  
+;;;295    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频                                                                  
 0000e8  2000              MOVS     r0,#0
 0000ea  f8ad0020          STRH     r0,[sp,#0x20]
-;;;294    	TIM_TimeBaseInit(TIM14,&TIM_TimeBaseStructure);	
+;;;296    	TIM_TimeBaseInit(TIM14,&TIM_TimeBaseStructure);	
 0000ee  a906              ADD      r1,sp,#0x18
 0000f0  48bc              LDR      r0,|L1.996|
 0000f2  f7fffffe          BL       TIM_TimeBaseInit
-;;;295    
-;;;296    	// Group TIM10 FET_1A    默认100Hz	
-;;;297    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[21];//Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;297    
+;;;298    	// Group TIM10 FET_1A    默认100Hz	
+;;;299    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[21];//Timer时钟的预分频值，分频后的值为计数时钟频率 
 0000f6  48b4              LDR      r0,|L1.968|
 0000f8  8d40              LDRH     r0,[r0,#0x2a]  ; BSP_XLongPWM_GroupPara
 0000fa  f8ad0018          STRH     r0,[sp,#0x18]
-;;;298    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;300    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 0000fe  2000              MOVS     r0,#0
 000100  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;299    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[22];//0-65535                                    
+;;;301    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[22];//0-65535                                    
 000104  48b0              LDR      r0,|L1.968|
 000106  8d80              LDRH     r0,[r0,#0x2c]  ; BSP_XLongPWM_GroupPara
 000108  9007              STR      r0,[sp,#0x1c]
-;;;300    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频            
+;;;302    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频            
 00010a  2000              MOVS     r0,#0
 00010c  f8ad0020          STRH     r0,[sp,#0x20]
-;;;301    	TIM_TimeBaseInit(TIM10,&TIM_TimeBaseStructure);	
+;;;303    	TIM_TimeBaseInit(TIM10,&TIM_TimeBaseStructure);	
 000110  a906              ADD      r1,sp,#0x18
 000112  48b5              LDR      r0,|L1.1000|
 000114  f7fffffe          BL       TIM_TimeBaseInit
-;;;302    
-;;;303    	// Group TIM11 FET_2A    默认100Hz	
-;;;304    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[24];//Timer时钟的预分频值，分频后的值为计数时钟频率 
+;;;304    
+;;;305    	// Group TIM11 FET_2A    默认100Hz	
+;;;306    	TIM_TimeBaseStructure.TIM_Prescaler     = BSP_XLongPWM_GroupPara[24];//Timer时钟的预分频值，分频后的值为计数时钟频率 
 000118  48ab              LDR      r0,|L1.968|
 00011a  8e00              LDRH     r0,[r0,#0x30]  ; BSP_XLongPWM_GroupPara
 00011c  f8ad0018          STRH     r0,[sp,#0x18]
-;;;305    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
+;;;307    	TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;        //向上计数
 000120  2000              MOVS     r0,#0
 000122  f8ad001a          STRH     r0,[sp,#0x1a]
-;;;306    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[25];//0-65535                                    
+;;;308    	TIM_TimeBaseStructure.TIM_Period        = BSP_XLongPWM_GroupPara[25];//0-65535                                    
 000126  48a8              LDR      r0,|L1.968|
 000128  8e40              LDRH     r0,[r0,#0x32]  ; BSP_XLongPWM_GroupPara
 00012a  9007              STR      r0,[sp,#0x1c]
-;;;307    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频    
+;;;309    	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;              //经过 TIM_Prescaler 分频后的时钟，再次分频值，通常设为1，不再分频    
 00012c  2000              MOVS     r0,#0
 00012e  f8ad0020          STRH     r0,[sp,#0x20]
-;;;308    	TIM_TimeBaseInit(TIM11,&TIM_TimeBaseStructure);	
+;;;310    	TIM_TimeBaseInit(TIM11,&TIM_TimeBaseStructure);	
 000132  a906              ADD      r1,sp,#0x18
 000134  48ad              LDR      r0,|L1.1004|
 000136  f7fffffe          BL       TIM_TimeBaseInit
-;;;309    
-;;;310        // PWM属性设置 TIM3 & TIM9 & TIM12 & TIM1 & TIM4  
-;;;311    	TIM_OCInitStructure.TIM_OCMode          = TIM_OCMode_PWM2;         //选择定时器模式:TIM脉冲宽度调制模式2
+;;;311    
+;;;312        // PWM属性设置 TIM3 & TIM9 & TIM12 & TIM1 & TIM4  
+;;;313    	TIM_OCInitStructure.TIM_OCMode          = TIM_OCMode_PWM2;         //选择定时器模式:TIM脉冲宽度调制模式2
 00013a  2070              MOVS     r0,#0x70
 00013c  f8ad0004          STRH     r0,[sp,#4]
-;;;312     	TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;  //正向通道输出使能
+;;;314     	TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;  //正向通道输出使能
 000140  2001              MOVS     r0,#1
 000142  f8ad0006          STRH     r0,[sp,#6]
-;;;313    	TIM_OCInitStructure.TIM_OutputNState    = TIM_OutputState_Disable; //反向通道输出使能 
+;;;315    	TIM_OCInitStructure.TIM_OutputNState    = TIM_OutputState_Disable; //反向通道输出使能 
 000146  2000              MOVS     r0,#0
 000148  f8ad0008          STRH     r0,[sp,#8]
-;;;314    	TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_Low;      //输出极性:TIM输出比较极性低   默认高电平	
+;;;316    	TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_Low;      //输出极性:TIM输出比较极性低   默认高电平	
 00014c  2002              MOVS     r0,#2
 00014e  f8ad0010          STRH     r0,[sp,#0x10]
-;;;315    	TIM_OCInitStructure.TIM_OCNPolarity     = TIM_OCNPolarity_Low;      
+;;;317    	TIM_OCInitStructure.TIM_OCNPolarity     = TIM_OCNPolarity_Low;      
 000152  2008              MOVS     r0,#8
 000154  f8ad0012          STRH     r0,[sp,#0x12]
-;;;316    	TIM_OCInitStructure.TIM_OCIdleState     = TIM_OCIdleState_Reset;
+;;;318    	TIM_OCInitStructure.TIM_OCIdleState     = TIM_OCIdleState_Reset;
 000158  2000              MOVS     r0,#0
 00015a  f8ad0014          STRH     r0,[sp,#0x14]
-;;;317    	TIM_OCInitStructure.TIM_OCNIdleState    = TIM_OCNIdleState_Reset;
+;;;319    	TIM_OCInitStructure.TIM_OCNIdleState    = TIM_OCNIdleState_Reset;
 00015e  f8ad0016          STRH     r0,[sp,#0x16]
-;;;318    	
-;;;319    	TIM_OC1Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH11
+;;;320    	
+;;;321    	TIM_OC1Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH11
 000162  a901              ADD      r1,sp,#4
 000164  4899              LDR      r0,|L1.972|
 000166  f7fffffe          BL       TIM_OC1Init
-;;;320    	TIM_OC2Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH12
+;;;322    	TIM_OC2Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH12
 00016a  a901              ADD      r1,sp,#4
 00016c  4897              LDR      r0,|L1.972|
 00016e  f7fffffe          BL       TIM_OC2Init
-;;;321    	TIM_OC3Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH01
+;;;323    	TIM_OC3Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH01
 000172  a901              ADD      r1,sp,#4
 000174  4895              LDR      r0,|L1.972|
 000176  f7fffffe          BL       TIM_OC3Init
-;;;322    	TIM_OC4Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH02
+;;;324    	TIM_OC4Init(TIM3,  &TIM_OCInitStructure);                          //PWM CH02
 00017a  a901              ADD      r1,sp,#4
 00017c  4893              LDR      r0,|L1.972|
 00017e  f7fffffe          BL       TIM_OC4Init
-;;;323    	TIM_OC1Init(TIM9,  &TIM_OCInitStructure);                          //PWM CH13
+;;;325    	TIM_OC1Init(TIM9,  &TIM_OCInitStructure);                          //PWM CH13
 000182  a901              ADD      r1,sp,#4
 000184  4892              LDR      r0,|L1.976|
 000186  f7fffffe          BL       TIM_OC1Init
-;;;324    	TIM_OC2Init(TIM9,  &TIM_OCInitStructure);                          //PWM CH14
+;;;326    	TIM_OC2Init(TIM9,  &TIM_OCInitStructure);                          //PWM CH14
 00018a  a901              ADD      r1,sp,#4
 00018c  4890              LDR      r0,|L1.976|
 00018e  f7fffffe          BL       TIM_OC2Init
-;;;325    	TIM_OC1Init(TIM12, &TIM_OCInitStructure);                          //PWM CH15
+;;;327    	TIM_OC1Init(TIM12, &TIM_OCInitStructure);                          //PWM CH15
 000192  a901              ADD      r1,sp,#4
 000194  488f              LDR      r0,|L1.980|
 000196  f7fffffe          BL       TIM_OC1Init
-;;;326    	TIM_OC2Init(TIM12, &TIM_OCInitStructure);                          //PWM CH16
+;;;328    	TIM_OC2Init(TIM12, &TIM_OCInitStructure);                          //PWM CH16
 00019a  a901              ADD      r1,sp,#4
 00019c  488d              LDR      r0,|L1.980|
 00019e  f7fffffe          BL       TIM_OC2Init
-;;;327    	TIM_OC1Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH03
+;;;329    	TIM_OC1Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH03
 0001a2  a901              ADD      r1,sp,#4
 0001a4  488c              LDR      r0,|L1.984|
 0001a6  f7fffffe          BL       TIM_OC1Init
-;;;328    	TIM_OC2Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH04
+;;;330    	TIM_OC2Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH04
 0001aa  a901              ADD      r1,sp,#4
 0001ac  488a              LDR      r0,|L1.984|
 0001ae  f7fffffe          BL       TIM_OC2Init
-;;;329    	TIM_OC3Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH05
+;;;331    	TIM_OC3Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH05
 0001b2  a901              ADD      r1,sp,#4
 0001b4  4888              LDR      r0,|L1.984|
 0001b6  f7fffffe          BL       TIM_OC3Init
-;;;330    	TIM_OC4Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH06
+;;;332    	TIM_OC4Init(TIM1,  &TIM_OCInitStructure);                          //PWM CH06
 0001ba  a901              ADD      r1,sp,#4
 0001bc  4886              LDR      r0,|L1.984|
 0001be  f7fffffe          BL       TIM_OC4Init
-;;;331    	TIM_OC1Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH07
+;;;333    	TIM_OC1Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH07
 0001c2  a901              ADD      r1,sp,#4
 0001c4  4885              LDR      r0,|L1.988|
 0001c6  f7fffffe          BL       TIM_OC1Init
-;;;332    	TIM_OC2Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH08
+;;;334    	TIM_OC2Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH08
 0001ca  a901              ADD      r1,sp,#4
 0001cc  4883              LDR      r0,|L1.988|
 0001ce  f7fffffe          BL       TIM_OC2Init
-;;;333    	TIM_OC3Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH09
+;;;335    	TIM_OC3Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH09
 0001d2  a901              ADD      r1,sp,#4
 0001d4  4881              LDR      r0,|L1.988|
 0001d6  f7fffffe          BL       TIM_OC3Init
-;;;334    	TIM_OC4Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH10
+;;;336    	TIM_OC4Init(TIM4,  &TIM_OCInitStructure);                          //PWM CH10
 0001da  a901              ADD      r1,sp,#4
 0001dc  487f              LDR      r0,|L1.988|
 0001de  f7fffffe          BL       TIM_OC4Init
-;;;335    	
-;;;336        // PWM属性设置 TIM13 & TIM14 & TIM10 & TIM11 	
-;;;337    	TIM_OCInitStructure.TIM_OCMode          = TIM_OCMode_PWM2;         //选择定时器模式:TIM脉冲宽度调制模式2
+;;;337    	
+;;;338        // PWM属性设置 TIM13 & TIM14 & TIM10 & TIM11 	
+;;;339    	TIM_OCInitStructure.TIM_OCMode          = TIM_OCMode_PWM2;         //选择定时器模式:TIM脉冲宽度调制模式2
 0001e2  2070              MOVS     r0,#0x70
 0001e4  f8ad0004          STRH     r0,[sp,#4]
-;;;338     	TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;  //比较输出使能
+;;;340     	TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;  //比较输出使能
 0001e8  2001              MOVS     r0,#1
 0001ea  f8ad0006          STRH     r0,[sp,#6]
-;;;339    	TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_High;     //输出极性:TIM输出比较极性低   默认低电平
+;;;341    	TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_High;     //输出极性:TIM输出比较极性低   默认低电平
 0001ee  2000              MOVS     r0,#0
 0001f0  f8ad0010          STRH     r0,[sp,#0x10]
-;;;340    	
-;;;341    	TIM_OC1Init(TIM13, &TIM_OCInitStructure);                          //LED
+;;;342    	
+;;;343    	TIM_OC1Init(TIM13, &TIM_OCInitStructure);                          //LED
 0001f4  a901              ADD      r1,sp,#4
 0001f6  487a              LDR      r0,|L1.992|
 0001f8  f7fffffe          BL       TIM_OC1Init
-;;;342    	TIM_OC1Init(TIM14, &TIM_OCInitStructure);                          //Buzzer	
+;;;344    	TIM_OC1Init(TIM14, &TIM_OCInitStructure);                          //Buzzer	
 0001fc  a901              ADD      r1,sp,#4
 0001fe  4879              LDR      r0,|L1.996|
 000200  f7fffffe          BL       TIM_OC1Init
-;;;343    	TIM_OC1Init(TIM10, &TIM_OCInitStructure);                          //FET_1A
+;;;345    	TIM_OC1Init(TIM10, &TIM_OCInitStructure);                          //FET_1A
 000204  a901              ADD      r1,sp,#4
 000206  4878              LDR      r0,|L1.1000|
 000208  f7fffffe          BL       TIM_OC1Init
-;;;344    	TIM_OC1Init(TIM11, &TIM_OCInitStructure);                          //FET_2A
+;;;346    	TIM_OC1Init(TIM11, &TIM_OCInitStructure);                          //FET_2A
 00020c  a901              ADD      r1,sp,#4
 00020e  4877              LDR      r0,|L1.1004|
 000210  f7fffffe          BL       TIM_OC1Init
-;;;345    	
-;;;346        // 使能各个PWM通道	
-;;;347    	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
+;;;347    	
+;;;348        // 使能各个PWM通道	
+;;;349    	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
 000214  2108              MOVS     r1,#8
 000216  486d              LDR      r0,|L1.972|
 000218  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;348        TIM_ARRPreloadConfig(TIM3, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
+;;;350        TIM_ARRPreloadConfig(TIM3, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
 00021c  2101              MOVS     r1,#1
 00021e  486b              LDR      r0,|L1.972|
 000220  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;349    	TIM_OC1PreloadConfig(TIM9, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
+;;;351    	TIM_OC1PreloadConfig(TIM9, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
 000224  2108              MOVS     r1,#8
 000226  486a              LDR      r0,|L1.976|
 000228  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;350        TIM_ARRPreloadConfig(TIM9, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
+;;;352        TIM_ARRPreloadConfig(TIM9, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
 00022c  2101              MOVS     r1,#1
 00022e  4868              LDR      r0,|L1.976|
 000230  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;351    	TIM_OC1PreloadConfig(TIM12, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
+;;;353    	TIM_OC1PreloadConfig(TIM12, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
 000234  2108              MOVS     r1,#8
 000236  4867              LDR      r0,|L1.980|
 000238  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;352        TIM_ARRPreloadConfig(TIM12, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
+;;;354        TIM_ARRPreloadConfig(TIM12, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
 00023c  2101              MOVS     r1,#1
 00023e  4865              LDR      r0,|L1.980|
 000240  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;353    	TIM_OC1PreloadConfig(TIM1, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
+;;;355    	TIM_OC1PreloadConfig(TIM1, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
 000244  2108              MOVS     r1,#8
 000246  4864              LDR      r0,|L1.984|
 000248  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;354        TIM_ARRPreloadConfig(TIM1, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
+;;;356        TIM_ARRPreloadConfig(TIM1, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
 00024c  2101              MOVS     r1,#1
 00024e  4862              LDR      r0,|L1.984|
 000250  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;355    	TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
+;;;357    	TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);                  //使能在CCR1上的预装载寄存器
 000254  2108              MOVS     r1,#8
 000256  4861              LDR      r0,|L1.988|
 000258  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;356        TIM_ARRPreloadConfig(TIM4, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable)     
+;;;358        TIM_ARRPreloadConfig(TIM4, ENABLE);                                //ARPE使能，自动重载预装载使能 (Auto-reload preload enable)     
 00025c  2101              MOVS     r1,#1
 00025e  485f              LDR      r0,|L1.988|
 000260  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;357    	TIM_OC1PreloadConfig(TIM13, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
+;;;359    	TIM_OC1PreloadConfig(TIM13, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
 000264  2108              MOVS     r1,#8
 000266  485e              LDR      r0,|L1.992|
 000268  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;358        TIM_ARRPreloadConfig(TIM13, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
+;;;360        TIM_ARRPreloadConfig(TIM13, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
 00026c  2101              MOVS     r1,#1
 00026e  485c              LDR      r0,|L1.992|
 000270  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;359    	TIM_OC1PreloadConfig(TIM14, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
+;;;361    	TIM_OC1PreloadConfig(TIM14, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
 000274  2108              MOVS     r1,#8
 000276  485b              LDR      r0,|L1.996|
 000278  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;360        TIM_ARRPreloadConfig(TIM14, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
+;;;362        TIM_ARRPreloadConfig(TIM14, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 	
 00027c  2101              MOVS     r1,#1
 00027e  4859              LDR      r0,|L1.996|
 000280  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;361    	TIM_OC1PreloadConfig(TIM10, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
+;;;363    	TIM_OC1PreloadConfig(TIM10, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
 000284  2108              MOVS     r1,#8
 000286  4858              LDR      r0,|L1.1000|
 000288  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;362        TIM_ARRPreloadConfig(TIM10, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
+;;;364        TIM_ARRPreloadConfig(TIM10, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
 00028c  2101              MOVS     r1,#1
 00028e  4856              LDR      r0,|L1.1000|
 000290  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;363    	TIM_OC1PreloadConfig(TIM11, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
+;;;365    	TIM_OC1PreloadConfig(TIM11, TIM_OCPreload_Enable);                 //使能在CCR1上的预装载寄存器
 000294  2108              MOVS     r1,#8
 000296  4855              LDR      r0,|L1.1004|
 000298  f7fffffe          BL       TIM_OC1PreloadConfig
-;;;364        TIM_ARRPreloadConfig(TIM11, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
+;;;366        TIM_ARRPreloadConfig(TIM11, ENABLE);                               //ARPE使能，自动重载预装载使能 (Auto-reload preload enable) 
 00029c  2101              MOVS     r1,#1
 00029e  4853              LDR      r0,|L1.1004|
 0002a0  f7fffffe          BL       TIM_ARRPreloadConfig
-;;;365    
-;;;366    	TIM_Cmd(TIM3, ENABLE);                                             //开始计数
+;;;367    
+;;;368    	TIM_Cmd(TIM3, ENABLE);                                             //开始计数
 0002a4  2101              MOVS     r1,#1
 0002a6  4849              LDR      r0,|L1.972|
 0002a8  f7fffffe          BL       TIM_Cmd
-;;;367        TIM_Cmd(TIM9, ENABLE);                                             //开始计数
+;;;369        TIM_Cmd(TIM9, ENABLE);                                             //开始计数
 0002ac  2101              MOVS     r1,#1
 0002ae  4848              LDR      r0,|L1.976|
 0002b0  f7fffffe          BL       TIM_Cmd
-;;;368        TIM_Cmd(TIM12, ENABLE);                                            //开始计数
+;;;370        TIM_Cmd(TIM12, ENABLE);                                            //开始计数
 0002b4  2101              MOVS     r1,#1
 0002b6  4847              LDR      r0,|L1.980|
 0002b8  f7fffffe          BL       TIM_Cmd
-;;;369        TIM_Cmd(TIM1, ENABLE);                                             //开始计数
+;;;371        TIM_Cmd(TIM1, ENABLE);                                             //开始计数
 0002bc  2101              MOVS     r1,#1
 0002be  4846              LDR      r0,|L1.984|
 0002c0  f7fffffe          BL       TIM_Cmd
-;;;370    	TIM_CtrlPWMOutputs(TIM1,ENABLE);                                   //允许PWM输出
+;;;372    	TIM_CtrlPWMOutputs(TIM1,ENABLE);                                   //允许PWM输出
 0002c4  2101              MOVS     r1,#1
 0002c6  4844              LDR      r0,|L1.984|
 0002c8  f7fffffe          BL       TIM_CtrlPWMOutputs
-;;;371        TIM_Cmd(TIM4, ENABLE);                                             //开始计数	
+;;;373        TIM_Cmd(TIM4, ENABLE);                                             //开始计数	
 0002cc  2101              MOVS     r1,#1
 0002ce  4843              LDR      r0,|L1.988|
 0002d0  f7fffffe          BL       TIM_Cmd
-;;;372        TIM_Cmd(TIM13, ENABLE);                                            //开始计数
+;;;374        TIM_Cmd(TIM13, ENABLE);                                            //开始计数
 0002d4  2101              MOVS     r1,#1
 0002d6  4842              LDR      r0,|L1.992|
 0002d8  f7fffffe          BL       TIM_Cmd
-;;;373        TIM_Cmd(TIM14, ENABLE);                                            //开始计数   
+;;;375        TIM_Cmd(TIM14, ENABLE);                                            //开始计数   
 0002dc  2101              MOVS     r1,#1
 0002de  4841              LDR      r0,|L1.996|
 0002e0  f7fffffe          BL       TIM_Cmd
-;;;374        TIM_Cmd(TIM10, ENABLE);                                            //开始计数
+;;;376        TIM_Cmd(TIM10, ENABLE);                                            //开始计数
 0002e4  2101              MOVS     r1,#1
 0002e6  4840              LDR      r0,|L1.1000|
 0002e8  f7fffffe          BL       TIM_Cmd
-;;;375        TIM_Cmd(TIM11, ENABLE);                                            //开始计数
+;;;377        TIM_Cmd(TIM11, ENABLE);                                            //开始计数
 0002ec  2101              MOVS     r1,#1
 0002ee  483f              LDR      r0,|L1.1004|
 0002f0  f7fffffe          BL       TIM_Cmd
-;;;376    
-;;;377    	
-;;;378    	// 刷新所有PWM输出
-;;;379    	BSP_XLong_PWMRefresh(0xFFFF);
+;;;378    
+;;;379    	
+;;;380    	// 刷新所有PWM输出
+;;;381    	BSP_XLong_PWMRefresh(0xFFFF);
 0002f4  f64f70ff          MOV      r0,#0xffff
 0002f8  f7fffffe          BL       BSP_XLong_PWMRefresh
-;;;380    	
-;;;381    	
-;;;382    		
-;;;383    	// PWM 输出测试值
-;;;384    	TIM_SetCompare3(TIM3,  15000);	   //PWM CH01   舵机
+;;;382    	
+;;;383    	
+;;;384    		
+;;;385    	// PWM 输出测试值
+;;;386    	TIM_SetCompare3(TIM3,  15000);	   //PWM CH01   舵机
 0002fc  f6432198          MOV      r1,#0x3a98
 000300  4832              LDR      r0,|L1.972|
 000302  f7fffffe          BL       TIM_SetCompare3
-;;;385    	TIM_SetCompare4(TIM3,  15000);	   //PWM CH02   舵机
+;;;387    	TIM_SetCompare4(TIM3,  15000);	   //PWM CH02   舵机
 000306  f6432198          MOV      r1,#0x3a98
 00030a  4830              LDR      r0,|L1.972|
 00030c  f7fffffe          BL       TIM_SetCompare4
-;;;386    	TIM_SetCompare1(TIM3,  15000);     //PWM CH11   舵机
+;;;388    	TIM_SetCompare1(TIM3,  15000);     //PWM CH11   舵机
 000310  f6432198          MOV      r1,#0x3a98
 000314  482d              LDR      r0,|L1.972|
 000316  f7fffffe          BL       TIM_SetCompare1
-;;;387    	TIM_SetCompare2(TIM3,  15000);     //PWM CH12   舵机
+;;;389    	TIM_SetCompare2(TIM3,  15000);     //PWM CH12   舵机
 00031a  f6432198          MOV      r1,#0x3a98
 00031e  482b              LDR      r0,|L1.972|
 000320  f7fffffe          BL       TIM_SetCompare2
-;;;388    	
-;;;389    	TIM_SetCompare1(TIM9,  15000);     //PWM CH13   舵机
+;;;390    	
+;;;391    	TIM_SetCompare1(TIM9,  15000);     //PWM CH13   舵机
 000324  f6432198          MOV      r1,#0x3a98
 000328  4829              LDR      r0,|L1.976|
 00032a  f7fffffe          BL       TIM_SetCompare1
-;;;390    	TIM_SetCompare2(TIM9,  15000);     //PWM CH14   舵机
+;;;392    	TIM_SetCompare2(TIM9,  15000);     //PWM CH14   舵机
 00032e  f6432198          MOV      r1,#0x3a98
 000332  4827              LDR      r0,|L1.976|
 000334  f7fffffe          BL       TIM_SetCompare2
-;;;391    	
-;;;392    	TIM_SetCompare1(TIM12, 15000);     //PWM CH15   舵机
+;;;393    	
+;;;394    	TIM_SetCompare1(TIM12, 15000);     //PWM CH15   舵机
 000338  f6432198          MOV      r1,#0x3a98
 00033c  4825              LDR      r0,|L1.980|
 00033e  f7fffffe          BL       TIM_SetCompare1
-;;;393    	TIM_SetCompare2(TIM12, 15000);     //PWM CH16   舵机
+;;;395    	TIM_SetCompare2(TIM12, 15000);     //PWM CH16   舵机
 000342  f6432198          MOV      r1,#0x3a98
 000346  4823              LDR      r0,|L1.980|
 000348  f7fffffe          BL       TIM_SetCompare2
-;;;394    	
-;;;395    	TIM_SetCompare1(TIM1,  24000);     //PWM CH03   电调
+;;;396    	
+;;;397    	TIM_SetCompare1(TIM1,  24000);     //PWM CH03   电调
 00034c  f64551c0          MOV      r1,#0x5dc0
 000350  4821              LDR      r0,|L1.984|
 000352  f7fffffe          BL       TIM_SetCompare1
-;;;396    	TIM_SetCompare2(TIM1,  24000);     //PWM CH04   电调
+;;;398    	TIM_SetCompare2(TIM1,  24000);     //PWM CH04   电调
 000356  f64551c0          MOV      r1,#0x5dc0
 00035a  481f              LDR      r0,|L1.984|
 00035c  f7fffffe          BL       TIM_SetCompare2
-;;;397    	TIM_SetCompare3(TIM1,  24000);	   //PWM CH05   电调
+;;;399    	TIM_SetCompare3(TIM1,  24000);	   //PWM CH05   电调
 000360  f64551c0          MOV      r1,#0x5dc0
 000364  481c              LDR      r0,|L1.984|
 000366  f7fffffe          BL       TIM_SetCompare3
-;;;398    	TIM_SetCompare4(TIM1,  24000);	   //PWM CH06   电调
+;;;400    	TIM_SetCompare4(TIM1,  24000);	   //PWM CH06   电调
 00036a  f64551c0          MOV      r1,#0x5dc0
 00036e  481a              LDR      r0,|L1.984|
 000370  f7fffffe          BL       TIM_SetCompare4
-;;;399    	
-;;;400    	TIM_SetCompare1(TIM4,  24000);     //PWM CH07   电调
+;;;401    	
+;;;402    	TIM_SetCompare1(TIM4,  24000);     //PWM CH07   电调
 000374  f64551c0          MOV      r1,#0x5dc0
 000378  4818              LDR      r0,|L1.988|
 00037a  f7fffffe          BL       TIM_SetCompare1
-;;;401    	TIM_SetCompare2(TIM4,  24000);     //PWM CH08   电调
+;;;403    	TIM_SetCompare2(TIM4,  24000);     //PWM CH08   电调
 00037e  f64551c0          MOV      r1,#0x5dc0
 000382  4816              LDR      r0,|L1.988|
 000384  f7fffffe          BL       TIM_SetCompare2
-;;;402    	TIM_SetCompare3(TIM4,  24000);	   //PWM CH09   电调
+;;;404    	TIM_SetCompare3(TIM4,  24000);	   //PWM CH09   电调
 000388  f64551c0          MOV      r1,#0x5dc0
 00038c  4813              LDR      r0,|L1.988|
 00038e  f7fffffe          BL       TIM_SetCompare3
-;;;403    	TIM_SetCompare4(TIM4,  24000);	   //PWM CH10   电调
+;;;405    	TIM_SetCompare4(TIM4,  24000);	   //PWM CH10   电调
 000392  f64551c0          MOV      r1,#0x5dc0
 000396  4811              LDR      r0,|L1.988|
 000398  f7fffffe          BL       TIM_SetCompare4
-;;;404    	
-;;;405    	// Buzzer输出测试值
-;;;406    	TIM_SetCompare1(TIM14, 54000);	   //Buzzer
+;;;406    	
+;;;407    	// Buzzer输出测试值
+;;;408    	TIM_SetCompare1(TIM14, 54000);	   //Buzzer
 00039c  f24d21f0          MOV      r1,#0xd2f0
 0003a0  4810              LDR      r0,|L1.996|
 0003a2  f7fffffe          BL       TIM_SetCompare1
-;;;407    	
-;;;408    	// LED输出测试值
-;;;409    	TIM_SetCompare1(TIM13, 54000);	   //LED	
+;;;409    	
+;;;410    	// LED输出测试值
+;;;411    	TIM_SetCompare1(TIM13, 54000);	   //LED	
 0003a6  f24d21f0          MOV      r1,#0xd2f0
 0003aa  480d              LDR      r0,|L1.992|
 0003ac  f7fffffe          BL       TIM_SetCompare1
-;;;410    
-;;;411    	// FET_1A输出测试值
-;;;412    	TIM_SetCompare1(TIM10, 12000);	   //FET_1A	
+;;;412    
+;;;413    	// FET_1A输出测试值
+;;;414    	TIM_SetCompare1(TIM10, 12000);	   //FET_1A	
 0003b0  f64261e0          MOV      r1,#0x2ee0
 0003b4  480c              LDR      r0,|L1.1000|
 0003b6  f7fffffe          BL       TIM_SetCompare1
-;;;413    
-;;;414    	// FET_2A输出测试值
-;;;415    	TIM_SetCompare1(TIM11, 12000);	   //FET_2A	
+;;;415    
+;;;416    	// FET_2A输出测试值
+;;;417    	TIM_SetCompare1(TIM11, 12000);	   //FET_2A	
 0003ba  f64261e0          MOV      r1,#0x2ee0
 0003be  480b              LDR      r0,|L1.1004|
 0003c0  f7fffffe          BL       TIM_SetCompare1
-;;;416    } 
+;;;418    } 
 0003c4  b009              ADD      sp,sp,#0x24
 0003c6  bd00              POP      {pc}
-;;;417    
+;;;419    
                           ENDP
 
                   |L1.968|
@@ -585,7 +585,8 @@
 000018  2a00              CMP      r2,#0
 00001a  d175              BNE      |L2.264|
 ;;;104    		   {
-;;;105    		       if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
+;;;105    		       // 输出安全值
+;;;106    			   if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
 00001c  4abe              LDR      r2,|L2.792|
 00001e  edd20a00          VLDR     s1,[r2,#0]
 000022  eebf1a00          VMOV.F32 s2,#-1.00000000
@@ -598,7 +599,7 @@
 00003c  eef1fa10          VMRS     APSR_nzcv,FPSCR
 000040  dd07              BLE      |L2.82|
                   |L2.66|
-;;;106    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
+;;;107    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  
 000042  4ab4              LDR      r2,|L2.788|
 000044  78d2              LDRB     r2,[r2,#3]  ; BSP_XLongPWM_MultiPara
 000046  4bb5              LDR      r3,|L2.796|
@@ -609,9 +610,10 @@
                   |L2.80|
 000050  e15e              B        |L2.784|
                   |L2.82|
-;;;107    			   else
-;;;108    			   {
-;;;109    				   sTemp = (BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0]) / 2; // 计算操作范围
+;;;108    			   // 输出正常值 
+;;;109    			   else
+;;;110    			   {
+;;;111    				   sTemp = (BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0]) / 2; // 计算操作范围
 000052  4bb0              LDR      r3,|L2.788|
 000054  789b              LDRB     r3,[r3,#2]  ; BSP_XLongPWM_MultiPara
 000056  4caf              LDR      r4,|L2.788|
@@ -619,25 +621,25 @@
 00005a  1b1a              SUBS     r2,r3,r4
 00005c  eb0273d2          ADD      r3,r2,r2,LSR #31
 000060  1058              ASRS     r0,r3,#1
-;;;110    				   fTemp = (CPU_FP32)sTemp;
+;;;112    				   fTemp = (CPU_FP32)sTemp;
 000062  ee000a90          VMOV     s1,r0
 000066  eef80ae0          VCVT.F32.S32 s1,s1
 00006a  eeb00a60          VMOV.F32 s0,s1
-;;;111    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
+;;;113    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 00006e  4aaa              LDR      r2,|L2.792|
 000070  edd20a00          VLDR     s1,[r2,#0]
 000074  ee600a80          VMUL.F32 s1,s1,s0
 000078  eeb00a60          VMOV.F32 s0,s1
-;;;112    				   
-;;;113    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准
+;;;114    				   
+;;;115    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准
 00007c  4aa5              LDR      r2,|L2.788|
 00007e  7852              LDRB     r2,[r2,#1]  ; BSP_XLongPWM_MultiPara
 000080  ee002a90          VMOV     s1,r2
 000084  eef80a60          VCVT.F32.U32 s1,s1
 000088  ee700a80          VADD.F32 s1,s1,s0
 00008c  eeb00a60          VMOV.F32 s0,s1
-;;;114    				   // 限幅
-;;;115                            if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
+;;;116    				   // 限幅，因为中间值可能设置的不是对称中心
+;;;117                            if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
 000090  4aa0              LDR      r2,|L2.788|
 000092  7892              LDRB     r2,[r2,#2]  ; BSP_XLongPWM_MultiPara
 000094  ee002a90          VMOV     s1,r2
@@ -652,7 +654,7 @@
 0000b2  eeb00a60          VMOV.F32 s0,s1
 0000b6  e014              B        |L2.226|
                   |L2.184|
-;;;116                       else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
+;;;118                       else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
 0000b8  4a96              LDR      r2,|L2.788|
 0000ba  7812              LDRB     r2,[r2,#0]  ; BSP_XLongPWM_MultiPara
 0000bc  ee002a90          VMOV     s1,r2
@@ -667,18 +669,18 @@
 0000da  eeb00a60          VMOV.F32 s0,s1
 0000de  e000              B        |L2.226|
                   |L2.224|
-;;;117                       else    fTemp = fTemp;			   
+;;;119                       else    fTemp = fTemp;			   
 0000e0  bf00              NOP      
                   |L2.226|
-;;;118    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率    
+;;;120    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率    
 0000e2  4a8e              LDR      r2,|L2.796|
 0000e4  8892              LDRH     r2,[r2,#4]  ; BSP_XLongPWM_GroupPara
 0000e6  ee002a90          VMOV     s1,r2
 0000ea  eef80a60          VCVT.F32.U32 s1,s1
 0000ee  ee600a80          VMUL.F32 s1,s1,s0
 0000f2  eeb00a60          VMOV.F32 s0,s1
-;;;119    				   
-;;;120    				   TIM3->CCR3 = (CPU_INT32U)fTemp;                         // 输出
+;;;121    				   
+;;;122    				   TIM3->CCR3 = (CPU_INT32U)fTemp;                         // 输出
 0000f6  eefc0ac0          VCVT.U32.F32 s1,s0
 0000fa  ee102a90          VMOV     r2,s1
 0000fe  4b88              LDR      r3,|L2.800|
@@ -688,11 +690,11 @@
 000104  e046              B        |L2.404|
 000106  e7ff              B        |L2.264|
                   |L2.264|
-;;;121    			   }
-;;;122    		    }
-;;;123               else                                             // 单极性
-;;;124               { 
-;;;125    			   if((BSP_XLongPWM_ChValue[0]<0)||(BSP_XLongPWM_ChValue[0]>1))	  
+;;;123    			   }
+;;;124    		    }
+;;;125               else                                             // 单极性
+;;;126               { 
+;;;127    			   if((BSP_XLongPWM_ChValue[0]<0)||(BSP_XLongPWM_ChValue[0]>1))	  
 000108  4a83              LDR      r2,|L2.792|
 00010a  edd20a00          VLDR     s1,[r2,#0]
 00010e  eef50ac0          VCMPE.F32 s1,#0.0
@@ -704,7 +706,7 @@
 000124  eef1fa10          VMRS     APSR_nzcv,FPSCR
 000128  dd07              BLE      |L2.314|
                   |L2.298|
-;;;126    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
+;;;128    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
 00012a  4a7a              LDR      r2,|L2.788|
 00012c  78d2              LDRB     r2,[r2,#3]  ; BSP_XLongPWM_MultiPara
 00012e  4b7b              LDR      r3,|L2.796|
@@ -714,58 +716,58 @@
 000136  601a              STR      r2,[r3,#0]
 000138  e0ea              B        |L2.784|
                   |L2.314|
-;;;127                   else	
-;;;128    			   {				   
-;;;129    				   sTemp =  BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0];  // 计算操作范围
+;;;129                   else	
+;;;130    			   {				   
+;;;131    				   sTemp =  BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0];  // 计算操作范围
 00013a  4a76              LDR      r2,|L2.788|
 00013c  7892              LDRB     r2,[r2,#2]  ; BSP_XLongPWM_MultiPara
 00013e  4b75              LDR      r3,|L2.788|
 000140  781b              LDRB     r3,[r3,#0]  ; BSP_XLongPWM_MultiPara
 000142  1ad0              SUBS     r0,r2,r3
-;;;130    				   fTemp = (CPU_FP32)sTemp;
+;;;132    				   fTemp = (CPU_FP32)sTemp;
 000144  ee000a90          VMOV     s1,r0
 000148  eef80ae0          VCVT.F32.S32 s1,s1
 00014c  eeb00a60          VMOV.F32 s0,s1
-;;;131    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
+;;;133    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 000150  4a71              LDR      r2,|L2.792|
 000152  edd20a00          VLDR     s1,[r2,#0]
 000156  ee600a80          VMUL.F32 s1,s1,s0
 00015a  eeb00a60          VMOV.F32 s0,s1
-;;;132    				   
-;;;133    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[0];    // 以最小值为基准 
+;;;134    				   
+;;;135    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[0];    // 以最小值为基准 
 00015e  4a6d              LDR      r2,|L2.788|
 000160  7812              LDRB     r2,[r2,#0]  ; BSP_XLongPWM_MultiPara
 000162  ee002a90          VMOV     s1,r2
 000166  eef80a60          VCVT.F32.U32 s1,s1
 00016a  ee700a80          VADD.F32 s1,s1,s0
 00016e  eeb00a60          VMOV.F32 s0,s1
-;;;134    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率
+;;;136    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率
 000172  4a6a              LDR      r2,|L2.796|
 000174  8892              LDRH     r2,[r2,#4]  ; BSP_XLongPWM_GroupPara
 000176  ee002a90          VMOV     s1,r2
 00017a  eef80a60          VCVT.F32.U32 s1,s1
 00017e  ee600a80          VMUL.F32 s1,s1,s0
 000182  eeb00a60          VMOV.F32 s0,s1
-;;;135    				   
-;;;136    				   TIM3->CCR3 = (CPU_INT32U)fTemp;			               // 输出
+;;;137    				   
+;;;138    				   TIM3->CCR3 = (CPU_INT32U)fTemp;			               // 输出
 000186  eefc0ac0          VCVT.U32.F32 s1,s0
 00018a  ee102a90          VMOV     r2,s1
 00018e  4b64              LDR      r3,|L2.800|
 000190  601a              STR      r2,[r3,#0]
 000192  e0bd              B        |L2.784|
                   |L2.404|
-;;;137    			   }
-;;;138                }	
-;;;139    		}
-;;;140    		else                                                // 负向
-;;;141    		{
-;;;142               if(BSP_XLongPWM_MultiPara[4] == BSP_PWM_BiDir) 	// 双极性
+;;;139    			   }
+;;;140                }	
+;;;141    		}
+;;;142    		else                                                // 负向
+;;;143    		{
+;;;144               if(BSP_XLongPWM_MultiPara[4] == BSP_PWM_BiDir) 	// 双极性
 000194  4a5f              LDR      r2,|L2.788|
 000196  7912              LDRB     r2,[r2,#4]  ; BSP_XLongPWM_MultiPara
 000198  2a00              CMP      r2,#0
 00019a  d174              BNE      |L2.646|
-;;;143    		   {
-;;;144    		       if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
+;;;145    		   {
+;;;146    		       if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
 00019c  4a5e              LDR      r2,|L2.792|
 00019e  edd20a00          VLDR     s1,[r2,#0]
 0001a2  eebf1a00          VMOV.F32 s2,#-1.00000000
@@ -778,7 +780,7 @@
 0001bc  eef1fa10          VMRS     APSR_nzcv,FPSCR
 0001c0  dd07              BLE      |L2.466|
                   |L2.450|
-;;;145    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
+;;;147    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
 0001c2  4a54              LDR      r2,|L2.788|
 0001c4  78d2              LDRB     r2,[r2,#3]  ; BSP_XLongPWM_MultiPara
 0001c6  4b55              LDR      r3,|L2.796|
@@ -788,9 +790,9 @@
 0001ce  601a              STR      r2,[r3,#0]
 0001d0  e09e              B        |L2.784|
                   |L2.466|
-;;;146    			   else
-;;;147    			   {
-;;;148    				   sTemp = (BSP_XLongPWM_MultiPara[0] - BSP_XLongPWM_MultiPara[2]) / 2; // 计算操作范围
+;;;148    			   else
+;;;149    			   {
+;;;150    				   sTemp = (BSP_XLongPWM_MultiPara[0] - BSP_XLongPWM_MultiPara[2]) / 2; // 计算操作范围
 0001d2  4b50              LDR      r3,|L2.788|
 0001d4  781b              LDRB     r3,[r3,#0]  ; BSP_XLongPWM_MultiPara
 0001d6  4c4f              LDR      r4,|L2.788|
@@ -798,25 +800,25 @@
 0001da  1b1a              SUBS     r2,r3,r4
 0001dc  eb0273d2          ADD      r3,r2,r2,LSR #31
 0001e0  1058              ASRS     r0,r3,#1
-;;;149    				   fTemp = (CPU_FP32)sTemp;
+;;;151    				   fTemp = (CPU_FP32)sTemp;
 0001e2  ee000a90          VMOV     s1,r0
 0001e6  eef80ae0          VCVT.F32.S32 s1,s1
 0001ea  eeb00a60          VMOV.F32 s0,s1
-;;;150    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
+;;;152    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 0001ee  4a4a              LDR      r2,|L2.792|
 0001f0  edd20a00          VLDR     s1,[r2,#0]
 0001f4  ee600a80          VMUL.F32 s1,s1,s0
 0001f8  eeb00a60          VMOV.F32 s0,s1
-;;;151    				   
-;;;152    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准 
+;;;153    				   
+;;;154    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准 
 0001fc  4a45              LDR      r2,|L2.788|
 0001fe  7852              LDRB     r2,[r2,#1]  ; BSP_XLongPWM_MultiPara
 000200  ee002a90          VMOV     s1,r2
 000204  eef80a60          VCVT.F32.U32 s1,s1
 000208  ee700a80          VADD.F32 s1,s1,s0
 00020c  eeb00a60          VMOV.F32 s0,s1
-;;;153    				   // 限幅
-;;;154                            if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
+;;;155    				   // 限幅，因为中间值可能设置的不是对称中心
+;;;156                            if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
 000210  4a40              LDR      r2,|L2.788|
 000212  7892              LDRB     r2,[r2,#2]  ; BSP_XLongPWM_MultiPara
 000214  ee002a90          VMOV     s1,r2
@@ -831,7 +833,7 @@
 000232  eeb00a60          VMOV.F32 s0,s1
 000236  e014              B        |L2.610|
                   |L2.568|
-;;;155                       else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
+;;;157                       else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
 000238  4a36              LDR      r2,|L2.788|
 00023a  7812              LDRB     r2,[r2,#0]  ; BSP_XLongPWM_MultiPara
 00023c  ee002a90          VMOV     s1,r2
@@ -846,18 +848,18 @@
 00025a  eeb00a60          VMOV.F32 s0,s1
 00025e  e000              B        |L2.610|
                   |L2.608|
-;;;156                       else    fTemp = fTemp;				   
+;;;158                       else    fTemp = fTemp;				   
 000260  bf00              NOP      
                   |L2.610|
-;;;157    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率    
+;;;159    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率    
 000262  4a2e              LDR      r2,|L2.796|
 000264  8892              LDRH     r2,[r2,#4]  ; BSP_XLongPWM_GroupPara
 000266  ee002a90          VMOV     s1,r2
 00026a  eef80a60          VCVT.F32.U32 s1,s1
 00026e  ee600a80          VMUL.F32 s1,s1,s0
 000272  eeb00a60          VMOV.F32 s0,s1
-;;;158    				   
-;;;159    				   TIM3->CCR3 = (CPU_INT32U)fTemp;                         // 输出
+;;;160    				   
+;;;161    				   TIM3->CCR3 = (CPU_INT32U)fTemp;                         // 输出
 000276  eefc0ac0          VCVT.U32.F32 s1,s0
 00027a  ee102a90          VMOV     r2,s1
 00027e  4b28              LDR      r3,|L2.800|
@@ -865,11 +867,11 @@
 000282  e045              B        |L2.784|
 000284  e7ff              B        |L2.646|
                   |L2.646|
-;;;160    			   }
-;;;161    		    }
-;;;162               else                                             // 单极性
-;;;163               { 
-;;;164    			   if((BSP_XLongPWM_ChValue[0]<0)||(BSP_XLongPWM_ChValue[0]>1))	  
+;;;162    			   }
+;;;163    		    }
+;;;164               else                                             // 单极性
+;;;165               { 
+;;;166    			   if((BSP_XLongPWM_ChValue[0]<0)||(BSP_XLongPWM_ChValue[0]>1))	  
 000286  4a24              LDR      r2,|L2.792|
 000288  edd20a00          VLDR     s1,[r2,#0]
 00028c  eef50ac0          VCMPE.F32 s1,#0.0
@@ -881,7 +883,7 @@
 0002a2  eef1fa10          VMRS     APSR_nzcv,FPSCR
 0002a6  dd07              BLE      |L2.696|
                   |L2.680|
-;;;165    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
+;;;167    				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
 0002a8  4a1a              LDR      r2,|L2.788|
 0002aa  78d2              LDRB     r2,[r2,#3]  ; BSP_XLongPWM_MultiPara
 0002ac  4b1b              LDR      r3,|L2.796|
@@ -891,57 +893,57 @@
 0002b4  601a              STR      r2,[r3,#0]
 0002b6  e02b              B        |L2.784|
                   |L2.696|
-;;;166                   else	
-;;;167    			   {				   
-;;;168    				   sTemp =  BSP_XLongPWM_MultiPara[0] - BSP_XLongPWM_MultiPara[2];  // 计算操作范围
+;;;168                   else	
+;;;169    			   {				   
+;;;170    				   sTemp =  BSP_XLongPWM_MultiPara[0] - BSP_XLongPWM_MultiPara[2];  // 计算操作范围
 0002b8  4a16              LDR      r2,|L2.788|
 0002ba  7812              LDRB     r2,[r2,#0]  ; BSP_XLongPWM_MultiPara
 0002bc  4b15              LDR      r3,|L2.788|
 0002be  789b              LDRB     r3,[r3,#2]  ; BSP_XLongPWM_MultiPara
 0002c0  1ad0              SUBS     r0,r2,r3
-;;;169    				   fTemp = (CPU_FP32)sTemp;
+;;;171    				   fTemp = (CPU_FP32)sTemp;
 0002c2  ee000a90          VMOV     s1,r0
 0002c6  eef80ae0          VCVT.F32.S32 s1,s1
 0002ca  eeb00a60          VMOV.F32 s0,s1
-;;;170    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
+;;;172    				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 0002ce  4a12              LDR      r2,|L2.792|
 0002d0  edd20a00          VLDR     s1,[r2,#0]
 0002d4  ee600a80          VMUL.F32 s1,s1,s0
 0002d8  eeb00a60          VMOV.F32 s0,s1
-;;;171    				   
-;;;172    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[2];    // 以最小值为基准 
+;;;173    				   
+;;;174    				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[2];    // 以最小值为基准 
 0002dc  4a0d              LDR      r2,|L2.788|
 0002de  7892              LDRB     r2,[r2,#2]  ; BSP_XLongPWM_MultiPara
 0002e0  ee002a90          VMOV     s1,r2
 0002e4  eef80a60          VCVT.F32.U32 s1,s1
 0002e8  ee700a80          VADD.F32 s1,s1,s0
 0002ec  eeb00a60          VMOV.F32 s0,s1
-;;;173    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率
+;;;175    				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率
 0002f0  4a0a              LDR      r2,|L2.796|
 0002f2  8892              LDRH     r2,[r2,#4]  ; BSP_XLongPWM_GroupPara
 0002f4  ee002a90          VMOV     s1,r2
 0002f8  eef80a60          VCVT.F32.U32 s1,s1
 0002fc  ee600a80          VMUL.F32 s1,s1,s0
 000300  eeb00a60          VMOV.F32 s0,s1
-;;;174    				   
-;;;175    				   TIM3->CCR3 = (CPU_INT32U)fTemp;			               // 输出
+;;;176    				   
+;;;177    				   TIM3->CCR3 = (CPU_INT32U)fTemp;			               // 输出
 000304  eefc0ac0          VCVT.U32.F32 s1,s0
 000308  ee102a90          VMOV     r2,s1
 00030c  4b04              LDR      r3,|L2.800|
 00030e  601a              STR      r2,[r3,#0]
                   |L2.784|
-;;;176    			   }
-;;;177                }
-;;;178    	     }
-;;;179          }
-;;;180    	
-;;;181    	  
-;;;182    	  
+;;;178    			   }
+;;;179                }
+;;;180    	     }
+;;;181          }
+;;;182    	
 ;;;183    	  
 ;;;184    	  
-;;;185    }
+;;;185    	  
+;;;186    	  
+;;;187    }
 000310  bd10              POP      {r4,pc}
-;;;186    
+;;;188    
                           ENDP
 
 000312  0000              DCW      0x0000
