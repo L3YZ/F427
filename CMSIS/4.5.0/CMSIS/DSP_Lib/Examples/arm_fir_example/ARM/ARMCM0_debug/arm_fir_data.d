@@ -1,0 +1,9 @@
+.\armcm0_debug\arm_fir_data.o: arm_fir_data.c
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\arm_math.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm0.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\armcm0_debug\arm_fir_data.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

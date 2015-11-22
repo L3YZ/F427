@@ -1,0 +1,15 @@
+.\obj\os_time.o: ..\..\..\uCOS\uCOS-III\Source\os_time.c
+.\obj\os_time.o: ..\..\..\uCOS\uCOS-III\Source\os.h
+.\obj\os_time.o: ..\APP\uCOS\os_cfg.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-CPU\cpu_core.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-CPU\Ports\ARM-Cortex-M4\cpu.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-CPU\cpu_def.h
+.\obj\os_time.o: ..\APP\uCOS\cpu_cfg.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-LIB\lib_def.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-LIB\lib_mem.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-CPU\cpu_core.h
+.\obj\os_time.o: ..\APP\uCOS\lib_cfg.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-LIB\lib_str.h
+.\obj\os_time.o: ..\..\..\uCOS\uC-LIB\lib_ascii.h
+.\obj\os_time.o: ..\..\..\uCOS\uCOS-III\Source\os_type.h
+.\obj\os_time.o: ..\..\..\uCOS\uCOS-III\Ports\ARM-Cortex-M4\os_cpu.h

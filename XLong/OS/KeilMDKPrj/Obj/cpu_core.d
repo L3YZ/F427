@@ -1,0 +1,11 @@
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-CPU\cpu_core.c
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-CPU\cpu_core.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-CPU\Ports\ARM-Cortex-M4\cpu.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-CPU\cpu_def.h
+.\obj\cpu_core.o: ..\APP\uCOS\cpu_cfg.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-LIB\lib_def.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-LIB\lib_mem.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-CPU\cpu_core.h
+.\obj\cpu_core.o: ..\APP\uCOS\lib_cfg.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-LIB\lib_str.h
+.\obj\cpu_core.o: ..\..\..\uCOS\uC-LIB\lib_ascii.h
