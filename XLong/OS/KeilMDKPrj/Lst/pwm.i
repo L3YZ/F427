@@ -27852,6 +27852,10 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
 				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 
 				   
 				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    
+				   
+                        if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
+                   else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
+                   else    fTemp = fTemp;			   
 				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               
 				   
 				   ((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400))->CCR3 = (CPU_INT32U)fTemp;                         
@@ -27887,6 +27891,10 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
 				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 
 				   
 				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    
+				   
+                        if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
+                   else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
+                   else    fTemp = fTemp;				   
 				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               
 				   
 				   ((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400))->CCR3 = (CPU_INT32U)fTemp;                         
@@ -27910,6 +27918,11 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
             }
 	     }
       }
+	
+	  
+	  
+	  
+	  
 }
 
 

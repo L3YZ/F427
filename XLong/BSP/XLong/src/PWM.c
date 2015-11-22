@@ -102,15 +102,21 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
 		{	
            if(BSP_XLongPWM_MultiPara[4] == BSP_PWM_BiDir) 	// 双极性
 		   {
-		       if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
-				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  // 输出安全值
+		       // 输出安全值
+			   if((BSP_XLongPWM_ChValue[0]<-1)||(BSP_XLongPWM_ChValue[0]>1))
+				   TIM3->CCR3 = BSP_XLongPWM_MultiPara[3]*BSP_XLongPWM_GroupPara[2];  
+			   // 输出正常值
 			   else
 			   {
 				   sTemp = (BSP_XLongPWM_MultiPara[2] - BSP_XLongPWM_MultiPara[0]) / 2; // 计算操作范围
 				   fTemp = (CPU_FP32)sTemp;
 				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 				   
-				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准       
+				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准
+				   // 限幅，因为中间值可能设置的不是对称中心
+                        if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
+                   else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
+                   else    fTemp = fTemp;			   
 				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率    
 				   
 				   TIM3->CCR3 = (CPU_INT32U)fTemp;                         // 输出
@@ -145,7 +151,11 @@ void   BSP_XLong_PWMRefresh(CPU_INT16U channel)
 				   fTemp = (CPU_FP32)sTemp;
 				   fTemp = fTemp* BSP_XLongPWM_ChValue[0];                 // 计算输出量
 				   
-				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准       
+				   fTemp = fTemp + (CPU_FP32)BSP_XLongPWM_MultiPara[1];    // 以中间值为基准 
+				   // 限幅，因为中间值可能设置的不是对称中心
+                        if(fTemp > BSP_XLongPWM_MultiPara[2]) fTemp = BSP_XLongPWM_MultiPara[2];	
+                   else if(fTemp < BSP_XLongPWM_MultiPara[0]) fTemp = BSP_XLongPWM_MultiPara[0];
+                   else    fTemp = fTemp;				   
 				   fTemp = fTemp* BSP_XLongPWM_GroupPara[2];               // 乘以倍率    
 				   
 				   TIM3->CCR3 = (CPU_INT32U)fTemp;                         // 输出
